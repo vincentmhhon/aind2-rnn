@@ -14,7 +14,7 @@ def window_transform_series(series, window_size):
     X = []
     y = []
 
-    y = series[window_size: ]
+    y = series[window_size:]
     series_size = len(series) - window_size
     i = 0
     while i < series_size:
@@ -48,11 +48,19 @@ def cleaned_text(text):
 
     return text
 
-### TODO: fill out the function below that transforms the input text and window-size into a set of input/output pairs for use with our RNN model
+### DONE: fill out the function below that transforms the input text and window-size into a set of input/output pairs for use with our RNN model
 def window_transform_text(text, window_size, step_size):
     # containers for input/output pairs
     inputs = []
     outputs = []
+
+    number_of_pairs = -(-len(text) // step_size)
+    i = 0
+    while i < number_of_pairs:
+        start_index = i * step_size
+        inputs.append(text[start_index: start_index + window_size])
+        outputs.append(text[start_index + window_size: start_index + window_size + 1])
+        i = i + 1
 
     return inputs,outputs
 
