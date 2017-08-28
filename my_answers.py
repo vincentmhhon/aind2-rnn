@@ -3,6 +3,7 @@ import numpy as np
 from keras.models import Sequential
 from keras.layers import Dense
 from keras.layers import LSTM
+import string
 import keras
 
 
@@ -35,9 +36,15 @@ def build_part1_RNN(window_size):
     model.add(Dense(1))
     return model
 
-### TODO: return the text input with only ascii lowercase and the punctuation given below included.
+### DONE: return the text input with only ascii lowercase and the punctuation given below included.
 def cleaned_text(text):
     punctuation = ['!', ',', '.', ':', ';', '?']
+
+    text = text.lower()
+    text_unique_characters = ''.join(set(text))
+    for c in text_unique_characters:
+        if c != ' ' and c not in string.ascii_lowercase and c not in punctuation:
+            text = text.replace(c, '')
 
     return text
 
