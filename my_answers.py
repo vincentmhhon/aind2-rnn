@@ -59,13 +59,7 @@ def window_transform_text(text, window_size, step_size):
         outputs.append(text[start_index + window_size: start_index + window_size + 1])
         i = i + 1
         start_index = i * step_size
-
-    # reshape each
-    inputs = np.asarray(inputs)
-    inputs.shape = (np.shape(inputs)[0:2])
-    outputs = np.asarray(outputs)
-    outputs.shape = (np.shape(outputs)[0:2])
-    return inputs,outputs
+    return inputs, outputs
 
 # DONE build the required RNN model:
 # a single LSTM hidden layer with softmax activation, categorical_crossentropy loss 
